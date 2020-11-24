@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action="/edit/{{ city.SSN }}" method="post">
+    <div class="row">
+        <div class="col">
+            <label>SSN: {{ city.SSN }}</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="First_name">First_name</label>
+            <input id="First_name" type="text" class="form-control" placeholder="First_name"
+                   name="First_name" value="{{city.First_name}}">
+        </div>
+        <div class="col">
+            <label for="Last_name">Last_name</label>
+            <input id="Last_name" type="text" class="form-control" placeholder="Last_name" name="Last_name"
+                   value="{{city.Last_name}}">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label for="Test1">Test1</label>
+            <input id="Test1" type="text" class="form-control" placeholder="Test1" name="Test1"
+                   value="{{city.Test1}}">
+        </div>
+        <div class="col">
+            <label for="Test2">Test2</label>
+            <input id="Test2" type="text" class="form-control" placeholder="Test2" name="Test2"
+                   value="{{city.Test2}}">
+        </div>
+    </div>
+	
+	<div class="row">
+        <div class="col">
+            <label for="Test3">Test3</label>
+            <input id="Test3" type="text" class="form-control" placeholder="Test3" name="Test3"
+                   value="{{city.Test3}}">
+        </div>
+        <div class="col">
+            <label for="Test4">Test4</label>
+            <input id="Test4" type="text" class="form-control" placeholder="Test4" name="Test4"
+                   value="{{city.Test4}}">
+        </div>
+    </div>
+	
+	<div class="row">
+        <div class="col">
+            <label for="Final">Final</label>
+            <input id="Final" type="Final" class="form-control" placeholder="Final" name="Final"
+                   value="{{city.Final}}">
+        </div>
+        <div class="col">
+            <label for="Grade">Grade</label>
+            <input id="Grade" type="text" class="form-control" placeholder="Grade" name="Grade"
+                   value="{{city.Grade}}">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+
+</form>
+{% endblock %}

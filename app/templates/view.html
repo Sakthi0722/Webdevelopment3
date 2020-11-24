@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="card" class="m-5 p-2">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">First_name: {{ city.First_name }}</li>
+        <li class="list-group-item">Last_name: {{ city.Last_name }}</li>
+        <li class="list-group-item">SSN: {{ city.SSN }}</li>
+        <li class="list-group-item">Test1: {{ city.Test1 }}</li>
+        <li class="list-group-item">Test2: {{ city.Test2 }}</li>
+		<li class="list-group-item">Test3: {{ city.Test3 }}</li>
+		<li class="list-group-item">Test4: {{ city.Test4 }}</li>
+		<li class="list-group-item">Final: {{ city.Final }}</li>
+		<li class="list-group-item">Grade: {{ city.Grade }}</li>
+    </ul>
+    <div class="card-body">
+        <a href="/edit/{{city.SSN}}" class="card-link btn btn-primary">edit</a>
+        <form action="/delete/{{city.SSN}}" method="post"><button type="submit" class="btn btn-danger">Delete</button></form>
+    </div>
+</div>
+
+
+
+{% endblock %}
