@@ -12,22 +12,23 @@
 		<th scope="col">Test4</th>
 		<th scope="col">Final</th>
 		<th scope="col">Grade</th>
+		<th scope="col">Option</th>
     </tr>
     </thead>
     <tbody>
-    {% for city in cities %}
+    {% for grade in grades %}
     <tr>
-        <td>{{ city.First_name }}</td>
-        <td>{{ city.Last_name }}</td>
-        <td>{{ city.SSN }}</td>
-        <td>{{ city.Test1 }}</td>
-        <td>{{ city.Test2 }}</td>
-		<td>{{ city.Test3 }}</td>
-		<td>{{ city.Test4 }}</td>
-		<td>{{ city.Final }}</td>
-		<td>{{ city.Grade }}</td>
+        <td>{{ grade.First_name }}</td>
+        <td>{{ grade.Last_name }}</td>
+        <td>{{ grade.SSN }}</td>
+        <td>{{ grade.Test1 }}</td>
+        <td>{{ grade.Test2 }}</td>
+		<td>{{ grade.Test3 }}</td>
+		<td>{{ grade.Test4 }}</td>
+		<td>{{ grade.Final }}</td>
+		<td>{{ grade.Grade }}</td>
         <td>
-            <a href="/view/{{city.SSN}}" class="card-link btn btn-primary">View</a>
+            <a href="/view/{{grade.SSN}}" class="card-link btn btn-primary">View</a>
         </td>
     </tr>
     {% endfor %}

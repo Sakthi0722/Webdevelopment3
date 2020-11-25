@@ -22,43 +22,43 @@ def index():
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM grades')
     result = cursor.fetchall()
-    return render_template('index.html', title='Home', user=user, cities=result)
+    return render_template('index.html', title='Home', user=user, grades=result)
 
 
-@app.route('/view/<int:city_id>', methods=['GET'])
-def record_view(city_id):
+@app.route('/view/<int:grade_SSN>', methods=['GET'])
+def record_view(grade_SSN):
     cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM grades WHERE id=%s', city_id)
+    cursor.execute('SELECT * FROM grades WHERE SSN=%s', grade_SSN)
     result = cursor.fetchall()
-    return render_template('view.html', title='View Form', city=result[0])
+    return render_template('view.html', title='View Form', grade=result[0])
 
 
-@app.route('/edit/<int:city_id>', methods=['GET'])
-def form_edit_get(city_id):
+@app.route('/edit/<int:grade_SSN>', methods=['GET'])
+def form_edit_get(grade_SSN):
     cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM grades WHERE id=%s', city_id)
+    cursor.execute('SELECT * FROM grades WHERE SSN=%s', grade_SSN)
     result = cursor.fetchall()
-    return render_template('edit.html', title='Edit Form', city=result[0])
+    return render_template('edit.html', title='Edit Form', grade=result[0])
 
 
-@app.route('/edit/<int:city_id>', methods=['POST'])
-def form_update_post(city_id):
+@app.route('/edit/<int:grade_SSN>', methods=['POST'])
+def form_update_post(grade_SSN):
     cursor = mysql.get_db().cursor()
     inputData = (request.form.get('First_name'), request.form.get('Last_name'), request.form.get('Test1'),
-                 request.form.get('Test2'), request.form.get('Test3'), request.form.get('Test4'), request.form.get('Final'), request.form.get('Grade') city_id)
+                 request.form.get('Test2'), request.form.get('Test3'), request.form.get('Test4'), request.form.get('Final'), request.form.get('Grade'))
     sql_update_query = """UPDATE grades t SET t.First_name = %s, t.Last_name = %s, t.Test1 = %s, t.Test2 = %s, t.Test3 = %s, t.Test4 = %s, t.Final = 
-    %s, t.Grade = %s WHERE t.id = %s """
+    %s, t.Grade = %s WHERE t.SSN = %s """
     cursor.execute(sql_update_query, inputData)
     mysql.get_db().commit()
     return redirect("/", code=302)
 
 
-@app.route('/cities/new', methods=['GET'])
+@app.route('/grades/new', methods=['GET'])
 def form_insert_get():
-    return render_template('new.html', title='New Oscar AwardForm')
+    return render_template('new.html', title='Students Grades')
 
 
-@app.route('/cities/new', methods=['POST'])
+@app.route('/grades/new', methods=['POST'])
 def form_insert_post():
     cursor = mysql.get_db().cursor()
     inputData = (request.form.get('SSN'), request.form.get('First_name'), request.form.get('Last_name'),
@@ -69,16 +69,16 @@ def form_insert_post():
     return redirect("/", code=302)
 
 
-@app.route('/delete/<int:city_id>', methods=['POST'])
-def form_delete_post(city_id):
+@app.route('/delete/<int:grade_SSN>', methods=['POST'])
+def form_delete_post(grade_SSN):
     cursor = mysql.get_db().cursor()
-    sql_delete_query = """DELETE FROM grades WHERE id = %s """
-    cursor.execute(sql_delete_query, city_id)
+    sql_delete_query = """DELETE FROM grades WHERE SSN = %s """
+    cursor.execute(sql_delete_query, grade_SSN)
     mysql.get_db().commit()
     return redirect("/", code=302)
 
 
-@app.route('/api/v1/oscar', methods=['GET'])
+@app.route('/api/v1/grades', methods=['GET'])
 def api_browse() -> str:
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM grades')
@@ -88,30 +88,30 @@ def api_browse() -> str:
     return resp
 
 
-@app.route('/api/v1/oscar/<int:city_id>', methods=['GET'])
-def api_retrieve(city_id) -> str:
+@app.route('/api/v1/grades/<int:grade_SSN>', methods=['GET'])
+def api_retrieve(grade_SSN) -> str:
     cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM grades WHERE id=%s', city_id)
+    cursor.execute('SELECT * FROM grades WHERE SSN=%s', grade_SSN)
     result = cursor.fetchall()
     json_result = json.dumps(result);
     resp = Response(json_result, status=200, mimetype='application/json')
     return resp
 
 
-@app.route('/api/v1/oscar/', methods=['POST'])
+@app.route('/api/v1/grades/', methods=['POST'])
 def api_add() -> str:
     resp = Response(status=201, mimetype='application/json')
     return resp
 
 
-@app.route('/api/v1/oscar/<int:city_id>', methods=['PUT'])
-def api_edit(city_id) -> str:
+@app.route('/api/v1/grades/<int:grade_SSN>', methods=['PUT'])
+def api_edit(grade_SSN) -> str:
     resp = Response(status=201, mimetype='application/json')
     return resp
 
 
-@app.route('/api/oscar/<int:city_id>', methods=['DELETE'])
-def api_delete(city_id) -> str:
+@app.route('/api/grades/<int:grade_SSN>', methods=['DELETE'])
+def api_delete(grade_SSN) -> str:
     resp = Response(status=210, mimetype='application/json')
     return resp
 

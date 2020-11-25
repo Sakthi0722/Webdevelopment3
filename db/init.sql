@@ -3,15 +3,15 @@ use gradesData;
 
 
 CREATE TABLE IF NOT EXISTS grades (
-    `Last_name` VARCHAR(9) CHARACTER SET utf8,
-    `First_name` VARCHAR(16) CHARACTER SET utf8,
-    `SSN` VARCHAR(21) CHARACTER SET utf8,
-    `Test1` VARCHAR(14) CHARACTER SET utf8,
+    `Last_name` VARCHAR(9) CHARACTER SET ,
+    `First_name` VARCHAR(16) CHARACTER SET ,
+    `SSN` VARCHAR(21) CHARACTER SET ,
+    `Test1` VARCHAR(14) CHARACTER SET ,
     `Test2` NUMERIC(3, 1),
     `Test3` NUMERIC(4, 1),
     `Test4` NUMERIC(3, 1),
-    `Final` VARCHAR(8) CHARACTER SET utf8,
-    `Grade` VARCHAR(7) CHARACTER SET utf8,
+    `Final` VARCHAR(8) CHARACTER SET ,
+    `Grade` VARCHAR(7) CHARACTER SET ,
 	PRIMARY KEY (`SSN`)
 );
 INSERT INTO grades VALUES

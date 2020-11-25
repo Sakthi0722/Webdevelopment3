@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
-<form action="/cities/new" method="POST">
+<form action="/grades/new" method="POST">
     <div class="row">
         <div class="col">
-            <label for="SSN">SSN: {{ city.SSN }}</label>
+            <label for="SSN">SSN: {{ grade.SSN }}</label>
             <input id="SSN" type="text" class="form-control" placeholder="Grade SSN" name="SSN">
         </div>
     </div>
@@ -44,7 +44,7 @@
 	<div class="row">
         <div class="col">
             <label for="Final">Final</label>
-            <input id="Final" type="Final" class="form-control" placeholder="Final" name="Final">
+            <input id="Final" type="text" class="form-control" placeholder="Final" name="Final">
         </div>
         <div class="col">
             <label for="Grade">Grade</label>
